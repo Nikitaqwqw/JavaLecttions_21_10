@@ -7,7 +7,7 @@ public class Main {
         Person john = new Person("John","Smith");
         Person barbara = new Person("Barbara","Sweps");
 
-
+        System.out.println("=====");
         john.sayHello();
         barbara.sayHello();
     }
