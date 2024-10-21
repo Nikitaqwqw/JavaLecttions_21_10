@@ -13,6 +13,8 @@ public class Main {
         System.out.println("=====");
         john.sayHello();
         barbara.sayHello();
+
+        SomeOtherPersonClass.doSomething();
     }
 
 }
