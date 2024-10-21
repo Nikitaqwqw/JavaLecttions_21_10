@@ -13,8 +13,7 @@ public class Main {
         System.out.println("=====");
         john.sayHello();
         barbara.sayHello();
-
-
+        SomeOtherPersonClass.doSomething();
         System.out.println("Working on feature 3");
         Brand brand = new Brand("BWM");
 
