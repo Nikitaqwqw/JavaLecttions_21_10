@@ -7,6 +7,9 @@ public class Main {
         Person john = new Person("John","Smith");
         Person barbara = new Person("Barbara","Sweps");
 
+        Car car = new Car();
+        car.startEngine();
+
         System.out.println("=====");
         john.sayHello();
         barbara.sayHello();
