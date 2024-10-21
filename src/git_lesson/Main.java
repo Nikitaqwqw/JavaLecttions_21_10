@@ -13,6 +13,12 @@ public class Main {
         System.out.println("=====");
         john.sayHello();
         barbara.sayHello();
+
+
+        System.out.println("Working on feature 3");
+        Brand brand = new Brand("BWM");
+
+
     }
 
 }
