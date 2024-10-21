@@ -4,11 +4,12 @@ import java.util.Objects;
 
 public class Person {
 
-
+    private final CallableImpl callable;
     private String name;
     private String surname;
 
     public Person(String name, String surname) {
+        this.callable = new CallableImpl();
         this.name = name;
         this.surname = surname;
     }
@@ -45,5 +46,10 @@ public class Person {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+
+    public void call(){
+        callable.call();
     }
 }
