@@ -68,8 +68,8 @@ public class Bank {
             System.out.println("Cannot save clients to file");
         }
     }
-    
-    public List<Client> loadClientsFromFile(){
+
+    public List<Client> loadClientsFromFile() {
         List<Client> clients = new ArrayList<>();
 
         //TODO load clients from file

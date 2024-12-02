@@ -25,7 +25,7 @@ public class Card {
                 '}';
     }
 
-    public Card(String cardNumber, double balance, Currency currency) {
+    public Card(String cardNumber,Currency currency, double balance) {
         this.cardNumber = cardNumber;
         this.balance = balance;
         this.currency = currency;
@@ -76,14 +76,24 @@ public class Card {
         byte[] bytesCardsNumber = cardNumber.getBytes();
         byte[] currencyBytes = currency.toString().getBytes();
         byte[] balanceBytes = String.valueOf(balance).getBytes();
-        byte[] enterNewLineBytes = "\n".getBytes();
-        ByteBuffer byteBuffer = ByteBuffer.allocate(
-                bytesCardsNumber.length + currencyBytes.length + balanceBytes.length + enterNewLineBytes.length
-        );
+        byte[] spaceBytes = " ".getBytes(); // Используем пробел
+        byte[] newLineBytes = "\n".getBytes();
+
+        // Рассчитываем общий размер
+        int bufferSize = bytesCardsNumber.length
+                + spaceBytes.length
+                + currencyBytes.length
+                + spaceBytes.length
+                + balanceBytes.length
+                + newLineBytes.length;
+        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
         byteBuffer.put(bytesCardsNumber);
+        byteBuffer.put(spaceBytes);
         byteBuffer.put(currencyBytes);
+        byteBuffer.put(spaceBytes);
         byteBuffer.put(balanceBytes);
-        byteBuffer.put(enterNewLineBytes);
+        byteBuffer.put(spaceBytes);
+        byteBuffer.put(newLineBytes);
         byteBuffer.flip();
         return  byteBuffer;
     }
