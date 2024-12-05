@@ -39,7 +39,7 @@ public class Terminal {
             //doSomething
         }
         Card cardNonExist = bank.findCardByNumber("0000 0000 0000 0000");
-        bank.saveClientToFile();
+        bank.saveClientToFile(CardUtils.CLIENTS_FILE_PATH);
     }
 
     public static List<Client> loadClientsFromFile(){

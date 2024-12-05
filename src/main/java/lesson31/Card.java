@@ -6,9 +6,7 @@ import lesson31.exceptions.WrongFormatException;
 
 import java.nio.ByteBuffer;
 
-enum Currency {
-    UAH, USD, EUR
-}
+
 
 
 public class Card {

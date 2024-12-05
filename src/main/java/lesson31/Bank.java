@@ -56,8 +56,8 @@ public class Bank {
         return cards;
     }
 
-    public void saveClientToFile() {
-        try (FileChannel channel = FileChannel.open(Path.of(CardUtils.CLIENTS_FILE_PATH),
+    public void saveClientToFile(String filePath) {
+        try (FileChannel channel = FileChannel.open(Path.of(filePath),
                 StandardOpenOption.CREATE,
                 StandardOpenOption.WRITE)) {
             for (Client client : clientList) {
