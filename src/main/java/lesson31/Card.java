@@ -31,18 +31,6 @@ public class Card {
         this.currency = currency;
     }
 
-    public Card(String cardNumber, double balance) {
-        this.cardNumber = cardNumber;
-        this.balance = balance;
-        this.currency = Currency.UAH;
-    }
-
-    public Card(String cardNumber){
-        this.cardNumber = cardNumber;
-        this.balance = 0.0;
-        this.currency = Currency.UAH;
-    }
-
     public String getCardNumber() {
         return cardNumber;
     }

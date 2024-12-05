@@ -11,8 +11,7 @@ public class Terminal {
 
     public static void main(String[] args) {
         if(Files.exists(Path.of(CardUtils.CLIENTS_FILE_PATH))){
-            System.out.println("True");
-            loadClientsFromFile();
+            System.out.println(loadClientsFromFile());
         } else {
             createNewClients();
         }
@@ -39,9 +38,7 @@ public class Terminal {
         if (card != null){
             //doSomething
         }
-        System.out.println(card);
         Card cardNonExist = bank.findCardByNumber("0000 0000 0000 0000");
-        System.out.println(cardNonExist);
         bank.saveClientToFile();
     }
 

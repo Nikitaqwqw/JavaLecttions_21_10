@@ -6,6 +6,7 @@ import java.nio.channels.FileChannel;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -71,11 +72,49 @@ public class Bank {
 
     public List<Client> loadClientsFromFile() {
         List<Client> clients = new ArrayList<>();
-
-        //TODO load clients from file
-
+        try (FileChannel channel = FileChannel.open(Path.of(CardUtils.CLIENTS_FILE_PATH), StandardOpenOption.READ)) {
+           String data = extractDataFromFile(channel);
+           String[] separatedParts = data.split("\n");
+           Client currentClient = null;
+           for (String part: separatedParts){
+               if (part.length() < 16){ //Цє скоріше за все імя кліента
+                   if (currentClient != null){
+                       clients.add(currentClient);
+                   }
+                    currentClient = new Client(part,new ArrayList<>());
+               } else {
+                    String[] cardParts = part.split(" ");
+                    String cardNumber = cardParts[0] + cardParts[1]+ cardParts[2]+ cardParts[3];
+                    Currency currency = Currency.valueOf(cardParts[4]);
+                    double balance =  Double.parseDouble(cardParts[5]);
+                    Card card = new Card(cardNumber,currency,balance);
+                    currentClient.addCard(card);
+               }
+           }
+           clients.add(currentClient);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
         return clients;
     }
+
+    private String extractDataFromFile(FileChannel channel) throws IOException {
+        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+        StringBuilder stringBuilder = new StringBuilder();
+        channel.read(byteBuffer);
+        byteBuffer.flip();
+        while(byteBuffer.hasRemaining()){
+            stringBuilder.append((char)byteBuffer.get());
+        }
+        byteBuffer.clear();
+        return stringBuilder.toString();
+    }
+
+
+
+    //                    String cardNumber = part.substring(0,19);
+//                    Currency currency = Currency.valueOf(part.substring(19,22));
+//                    double balance =  Double.parseDouble(part.substring(22));
 
 
 }

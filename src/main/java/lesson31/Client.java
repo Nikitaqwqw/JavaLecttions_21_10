@@ -14,11 +14,6 @@ public class Client {
         this.cardsList = cardsList;
     }
 
-    public Client(String name) {
-        this.name = name;
-        this.cardsList = new ArrayList<>();
-    }
-
     public void addCard(Card card){
         if (card == null) return;
         cardsList.add(card);
@@ -47,5 +42,13 @@ public class Client {
         }
         byteBuffer.flip();
         return byteBuffer;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "name='" + name + '\'' +
+                ", cardsList=" + cardsList +
+                '}';
     }
 }
